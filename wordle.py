@@ -1,8 +1,4 @@
-from operator import le
-from pickle import NONE
 import random, pygame, sys
-from xml.etree.ElementTree import TreeBuilder
-from itertools import repeat
 
 pygame.init() 
 
