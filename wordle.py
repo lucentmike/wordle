@@ -11,14 +11,13 @@ YELLOW = (255,255,102)
 GREY = (190,190,190)
 BLACK = (0,0,0)
 GREEN = (0,255,0)
-LIGHTGREEN = (125,238,125)
 
 font = pygame.font.SysFont('Helvetica neue', 40)
 bigFont = pygame.font.SysFont('Helvectia neue', 70)
 
-youWin = bigFont.render('NICE!', True, LIGHTGREEN)
-youLose = bigFont.render(f'DAMN!', True, LIGHTGREEN)
-playAgain = bigFont.render('Play Again?', True, LIGHTGREEN)
+youWin = bigFont.render('NICE!', True, WHITE)
+youLose = bigFont.render(f'DAMN!...', True, WHITE)
+playAgain = bigFont.render('Play Again?', True, WHITE)
 
 def checkGuest(turns, word, userGuess, window):
     renderList = ["","","","",""]
