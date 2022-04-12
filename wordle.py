@@ -19,7 +19,6 @@ bigFont = pygame.font.SysFont('Helvectia neue', 70)
 youWin = bigFont.render('NICE!', True, LIGHTGREEN)
 youLose = bigFont.render(f'DAMN!', True, LIGHTGREEN)
 playAgain = bigFont.render('Play Again?', True, LIGHTGREEN)
-notValid = "NOT VALID"
 
 def checkGuest(turns, word, userGuess, window):
     renderList = ["","","","",""]
@@ -43,8 +42,6 @@ def checkGuest(turns, word, userGuess, window):
 
     if guessColorCode == [GREEN, GREEN, GREEN, GREEN, GREEN]:
         return True
-    print(guessColorCode)
-
     
 def main():
 
@@ -79,7 +76,7 @@ def main():
         for y in range(0,6):
             pygame.draw.rect(window, GREY, pygame.Rect(60 + (x*80), 50 + (y*80), 50, 50), 2)
 
-    pygame.display.set_caption("Wordl")
+    pygame.display.set_caption("Wordle")
 
     win = False
 
@@ -94,9 +91,6 @@ def main():
 
             if event.type == pygame.KEYDOWN and event.key != pygame.K_BACKSPACE:
                 guess += event.unicode.upper().strip()
-                print(type(guess))
-                print(len(guess))
-                print(guess)
 
                 if event.key == pygame.K_RETURN and win == True:
                     main()
