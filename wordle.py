@@ -2,6 +2,8 @@ from operator import le
 from pickle import NONE
 import random, pygame, sys
 from xml.etree.ElementTree import TreeBuilder
+import time
+
 pygame.init() 
 
 WHITE = (255,255,255)
@@ -52,7 +54,13 @@ def main():
         WORDS = f.readlines()
 
     with open('guess_words.txt', 'r') as f:
-        GUESS_WORDS = f.readlines()
+        f = f.readlines()
+
+    GUESS_WORDS = []
+
+    for x in f[:]:
+        GUESS_WORDS.append(x.strip())
+        
 
     word = WORDS[random.randint(0, len(WORDS)-1)].upper().strip()
     print(word)
@@ -101,13 +109,14 @@ def main():
 
                 if event.key == pygame.K_RETURN and len(guess) > 4 :
                     print('checking')
-                    if guess in GUESS_WORDS:
+                    if guess.lower() in GUESS_WORDS:
                         win = checkGuest(turns, word, guess, window)
                         turns +=1 
                         guess = ""
                         window.fill(BLACK, (0, 500, 500, 200))
                     else:
                         window.blit(notValid, (180, 530))
+                        
 
         window.fill(BLACK, (0, 500, 500, 200))
         renderGuess = font.render(guess, True, WHITE)
