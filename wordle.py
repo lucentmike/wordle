@@ -2,7 +2,7 @@ from operator import le
 from pickle import NONE
 import random, pygame, sys
 from xml.etree.ElementTree import TreeBuilder
-import time
+from itertools import repeat
 
 pygame.init() 
 
@@ -19,7 +19,7 @@ bigFont = pygame.font.SysFont('Helvectia neue', 70)
 youWin = bigFont.render('NICE!', True, LIGHTGREEN)
 youLose = bigFont.render(f'DAMN!', True, LIGHTGREEN)
 playAgain = bigFont.render('Play Again?', True, LIGHTGREEN)
-notValid = bigFont.render('Not a valid word!', True, LIGHTGREEN)
+notValid = "NOT VALID"
 
 def checkGuest(turns, word, userGuess, window):
     renderList = ["","","","",""]
@@ -32,9 +32,6 @@ def checkGuest(turns, word, userGuess, window):
 
         if userGuess[letter] == word[letter]:
             guessColorCode[letter] = GREEN
-
-        print(userGuess[letter])
-        print(guessColorCode[letter])
 
     list(userGuess)
 
@@ -50,6 +47,7 @@ def checkGuest(turns, word, userGuess, window):
 
     
 def main():
+
     with open('words.txt', 'r') as f:
         WORDS = f.readlines()
 
@@ -89,13 +87,12 @@ def main():
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
-                pygame.exit()
                 sys.exit()
 
             if event.type == pygame.KEYDOWN and event.key == pygame.K_BACKSPACE or len(guess) > 5:
                     guess = guess[:-1]
 
-            elif event.type == pygame.KEYDOWN and event.key != pygame.K_BACKSPACE:
+            if event.type == pygame.KEYDOWN and event.key != pygame.K_BACKSPACE:
                 guess += event.unicode.upper().strip()
                 print(type(guess))
                 print(len(guess))
@@ -114,10 +111,7 @@ def main():
                         turns +=1 
                         guess = ""
                         window.fill(BLACK, (0, 500, 500, 200))
-                    else:
-                        window.blit(notValid, (180, 530))
-                        
-
+  
         window.fill(BLACK, (0, 500, 500, 200))
         renderGuess = font.render(guess, True, WHITE)
         window.blit(renderGuess, (180, 530))
